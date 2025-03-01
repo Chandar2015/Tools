@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoloCompress - 3D Image Optimization</title>
+    <meta name="description" content="Next-gen 3D image compression with holographic interface. Experience AI-powered optimization in augmented reality style.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --hologram-gradient: linear-gradient(135deg, #00F7FF 0%, #00FF9D 33%, #7B61FF 66%, #FF6B35 100%);
+            --dark-bg: #0A0F14;
+            --card-bg: rgba(10, 15, 20, 0.8);
+            --neon-blue: #00F7FF;
+            --neon-green: #00FF9D;
+            --neon-purple: #7B61FF;
+            --neon-orange: #FF6B35;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: var(--dark-bg);
+            color: white;
+            line-height: 1.7;
+            padding: 2rem;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            perspective: 1000px;
+            padding: 4rem 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-content {
+            transform-style: preserve-3d;
+            transform: rotateX(15deg) rotateY(-10deg);
+            transition: transform 1s;
+        }
+
+        .hero:hover .hero-content {
+            transform: rotateX(0deg) rotateY(0deg);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            background: var(--hologram-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0,255,255,0.5);
+            margin-bottom: 1.5rem;
+            transform: translateZ(50px);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            color: rgba(255,255,255,0.8);
+            transform: translateZ(30px);
+        }
+
+        .file-input-container {
+            background: var(--card-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+            margin-bottom: 2.5rem;
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
+        }
+
+        .file-input-container:hover {
+            transform: rotate(-2deg) translateY(-5px);
+        }
+
+        .file-input {
+            border: 3px solid var(--neon-blue);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            transform-style: preserve-3d;
+        }
+
+        .file-input::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 3px solid var(--neon-green);
+            border-radius: 20px;
+            transform: rotate(-3deg);
+            opacity: 0.5;
+        }
+
+        .file-input svg {
+            width: 100px;
+            height: 100px;
+            fill: var(--neon-purple);
+            margin-bottom: 1rem;
+            animation: hologram 3s linear infinite;
+        }
+
+        .compression-controls {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+            margin-bottom: 2.5rem;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .slider-container {
+            position: relative;
+            margin: 2rem 0;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 12px;
+            background: var(--hologram-gradient);
+            border-radius: 10px;
+            outline: none;
+            transform-style: preserve-3d;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 40px;
+            height: 40px;
+            background: var(--hologram-gradient);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 20px var(--neon-blue);
+            transform: scale(1.2);
+            transition: transform 0.3s;
+        }
+
+        .slider:hover::-webkit-slider-thumb {
+            transform: scale(1.4);
+            box-shadow: 0 0 30px var(--neon-green);
+        }
+
+        .value-display {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: var(--hologram-gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 20px;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0,255,255,0.3);
+            transform: rotate(5deg);
+        }
+
+        .cta-button {
+            background: var(--hologram-gradient);
+            border: none;
+            padding: 1.5rem 3.5rem;
+            border-radius: 40px;
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0,255,255,0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .cta-button:hover {
+            transform: rotate(-3deg) translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,255,255,0.6);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--hologram-gradient);
+            opacity: 0;
+            transition: opacity 0.3s;
+            transform: rotate(45deg);
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            opacity: 0.3;
+        }
+
+        .image-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+            perspective: 1000px;
+        }
+
+        .preview-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+            transition: transform 0.5s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .preview-card:hover {
+            transform: rotateY(15deg) translateY(-10px);
+        }
+
+        .preview-card img {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .preview-card:hover img {
+            transform: scale(1.05) rotate(-3deg);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1rem;
+            transform: translateZ(20px);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+        }
+
+        .stat-item h3 {
+            color: var(--neon-green);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.5rem;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .ad-container {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+            transform: rotate(2deg);
+        }
+
+        @keyframes hologram {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .hero {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .file-input {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>HoloCompress</h1>
+            <p>Next-generation 3D image optimization with holographic interface and AI-powered compression</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <main>
+            <div class="file-input-container">
+                <div class="file-input">
+                    <input type="file" id="imageInput" accept="image/*" required>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-11h2v6h-2zm3 9.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5.5.67.5 1.5-.17 1.5-1.5 1.5z"/></svg>
+                    <h3>Drag & Drop Your Image Here</h3>
+                    <p>Or click to select from your device</p>
+                </div>
+            </div>
+
+            <div class="compression-controls">
+                <div class="control-group">
+                    <label for="compressionLevel">Optimization Strength</label>
+                    <div class="slider-container">
+                        <input type="range" id="compressionLevel" min="10" max="95" value="75" class="slider">
+                        <span class="value-display">75%</span>
+                    </div>
+                </div>
+                
+                <button id="compressBtn" class="cta-button hidden">Optimize Image</button>
+                <a id="downloadLink" class="cta-button hidden">Download Optimized Image</a>
+            </div>
+
+            <div class="image-preview">
+                <div class="preview-card">
+                    <h3>Original Image</h3>
+                    <img id="originalImage" alt="Original image preview">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <h3>Size</h3>
+                            <p id="originalSize">-</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>Dimensions</h3>
+                            <p id="originalDimensions">-</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="preview-card">
+                    <h3>Optimized Image</h3>
+                    <img id="compressedImage" alt="Compressed image preview">
+                    <div class="stats">
+                        <div class="stat-item">
+                            <h3>Size</h3>
+                            <p id="compressedSize">-</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>Saved</h3>
+                            <p id="savedPercentage">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside>
+            <div class="ad-container">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+                     crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="auto"
+                     data-ad-layout-key="-gw-3+1f-3d+2z"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="XXXXXXXXXX"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const compressBtn = document.getElementById('compressBtn');
+        const downloadLink = document.getElementById('downloadLink');
+        const compressionLevel = document.getElementById('compressionLevel');
+        const originalImage = document.getElementById('originalImage');
+        const compressedImage = document.getElementById('compressedImage');
+        const originalSize = document.getElementById('originalSize');
+        const originalDimensions = document.getElementById('originalDimensions');
+        const compressedSize = document.getElementById('compressedSize');
+        const savedPercentage = document.getElementById('savedPercentage');
+
+        let originalFile;
+
+        imageInput.addEventListener('change', handleImageSelect);
+        compressionLevel.addEventListener('input', updateSliderDisplay);
+        compressBtn.addEventListener('click', compressImage);
+
+        function handleImageSelect(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            originalFile = file;
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                originalImage.src = event.target.result;
+                
+                const img = new Image();
+                img.onload = function() {
+                    originalDimensions.textContent = `${img.width}x${img.height}px`;
+                };
+                img.src = event.target.result;
+                
+                originalSize.textContent = formatBytes(file.size);
+                compressBtn.classList.remove('hidden');
+                downloadLink.classList.add('hidden');
+            };
+            
+            reader.readAsDataURL(file);
+        }
+
+        function updateSliderDisplay() {
+            document.querySelector('.value-display').textContent = `${compressionLevel.value}%`;
+        }
+
+        function compressImage() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            
+            img.onload = function() {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+                
+                canvas.toBlob((blob) => {
+                    const compressedUrl = URL.createObjectURL(blob);
+                    compressedImage.src = compressedUrl;
+                    
+                    const originalBytes = originalFile.size;
+                    const compressedBytes = blob.size;
+                    const saved = ((originalBytes - compressedBytes)/originalBytes * 100).toFixed(1);
+                    
+                    compressedSize.textContent = formatBytes(compressedBytes);
+                    savedPercentage.textContent = `${saved}%`;
+                    savedPercentage.style.color = saved > 50 ? '#00FF9D' : '#FF6B35';
+                    
+                    downloadLink.href = compressedUrl;
+                    downloadLink.download = `holo_${originalFile.name}`;
+                    downloadLink.classList.remove('hidden');
+                }, 'image/webp', compressionLevel.value / 100);
+            };
+            
+            img.src = originalImage.src;
+        }
+
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 B';
+            const k = 1024;
+            const sizes = ['B', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+    </script>
+</body>
+</html>
