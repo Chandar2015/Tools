@@ -3,21 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImageTools Pro - All-in-One Image Optimization Platform</title>
-    <meta name="description" content="Professional image editing and optimization tools including compression, resizing, format conversion, and AI-powered enhancements.">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
-    
+    <title>Toolbox - Free Online Image & PDF Tools</title>
+    <meta name="description" content="All-in-one toolbox for image editing and PDF management. Convert, compress, and optimize files with our free online tools.">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-gradient: linear-gradient(135deg, #7B61FF 0%, #00F7FF 100%);
-            --secondary-gradient: linear-gradient(135deg, #FF6B35 0%, #FF007F 100%);
-            --dark-bg: #0A0F14;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --neon-blue: #00F7FF;
-            --neon-green: #00FF9D;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #2ecc71;
+            --light: #f8f9fa;
         }
 
         * {
@@ -28,148 +23,90 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: var(--dark-bg);
-            color: white;
-            line-height: 1.7;
+            line-height: 1.6;
+            color: var(--primary);
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Navigation */
-        .nav-container {
+        header {
+            position: sticky;
+            top: 0;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 2rem;
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem 0;
         }
 
         .logo {
-            font-weight: 700;
+            font-weight: 600;
             font-size: 1.5rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--primary);
         }
 
-        .nav-links {
+        nav ul {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
-        .nav-links a {
-            color: rgba(255,255,255,0.8);
+        nav a {
+            color: var(--primary);
             text-decoration: none;
-            font-weight: 500;
-            position: relative;
+            transition: color 0.3s;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: var(--primary-gradient);
-            bottom: -2px;
-            left: 0;
-            transform: scaleX(0);
-            transition: transform 0.3s;
+        nav a:hover {
+            color: var(--secondary);
         }
 
-        .nav-links a:hover::after {
-            transform: scaleX(1);
-        }
-
-        /* Hero Section */
         .hero {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            padding: 4rem 0;
+            background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
         }
 
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1.5rem;
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
-        .hero-content p {
-            font-size: 1.25rem;
-            color: rgba(255,255,255,0.8);
-            max-width: 500px;
-            margin-bottom: 2rem;
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
         }
 
-        .hero-image {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600"><path fill="%232A214E" d="M0 0h800v600H0z"/><path fill="%233A2F6B" opacity="0.3" d="M400 300q-100 0-175-75t-75-175q0-100 75-175t175-75q100 0 175 75t75 175q0 100-75 175t-175 75z"/><circle fill="%237B61FF" opacity="0.2" cx="200" cy="150" r="150"/><circle fill="%2300F7FF" opacity="0.2" cx="600" cy="450" r="200"/></svg>') no-repeat center;
-            background-size: cover;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        /* Features Section */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 4rem 0;
-        }
-
-        .feature-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
+        .cta-btn {
+            background: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
             transition: transform 0.3s;
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
+        .cta-btn:hover {
+            transform: translateY(-2px);
         }
 
-        .feature-icon {
-            width: 64px;
-            height: 64px;
-            background: var(--primary-gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
+        .tool-section {
+            padding: 3rem 2rem;
         }
 
-        .feature-icon svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-
-        /* Tools Section */
-        .tools-grid {
+        .tool-grid {
             display: grid;
+            gap: 1.5rem;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            padding: 4rem 0;
         }
 
         .tool-card {
-            background: var(--card-bg);
+            background: white;
+            border-radius: 12px;
             padding: 2rem;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             transition: transform 0.3s;
         }
 
@@ -178,165 +115,141 @@
         }
 
         .tool-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--secondary-gradient);
-            border-radius: 15px;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
         }
 
-        /* Footer */
+        .tool-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tool-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .ad-slot {
+            background: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+            min-height: 100px;
+            margin: 2rem 0;
+        }
+
         footer {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 4rem 2rem;
-            margin-top: 4rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 1024px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .hero-image {
-                height: 300px;
-            }
+            background: var(--primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
         }
 
         @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
+            .hero h1 {
+                font-size: 2rem;
             }
             
-            .nav-links {
+            nav ul {
                 flex-direction: column;
-                align-items: flex-start;
+                text-align: center;
+                gap: 1rem;
+                padding: 1rem 0;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Navigation -->
-        <nav class="nav-container">
-            <div class="logo">ImageTools Pro</div>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#tools">Tools</a></li>
-                <li><a href="#pricing">Pricing</a></li>
+    <header>
+        <div class="logo">Toolbox</div>
+        <nav>
+            <ul>
+                <li><a href="#image-tools">Image Tools</a></li>
+                <li><a href="#pdf-tools">PDF Tools</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#" class="cta-btn">Get Started</a></li>
             </ul>
         </nav>
+    </header>
 
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Optimize Your Images Like a Pro</h1>
-                <p>All-in-one platform for image compression, resizing, format conversion, and AI-powered optimization</p>
-                <a href="compressor.html" class="cta-button">Try Image Compressor</a>
-            </div>
-            <div class="hero-image"></div>
-        </section>
+    <section class="hero">
+        <h1>Your All-in-One File Processing Toolbox</h1>
+        <p>Edit, convert, and optimize images and PDF documents with our free online tools. No downloads, no registration required.</p>
+        <a href="#tools" class="cta-btn">Explore Tools</a>
+    </section>
 
-        <!-- Features Section -->
-        <section class="features">
-            <h2 class="section-title">Why Choose Us?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-8h4v-4h-4zm0 8h4v-4h-4z"/></svg>
-                    </div>
-                    <h3>AI-Powered Compression</h3>
-                    <p>Smart algorithms reduce file size up to 95% without quality loss</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-8h4v-4h-4zm0 8h4v-4h-4z"/></svg>
-                    </div>
-                    <h3>Batch Processing</h3>
-                    <p>Optimize multiple images simultaneously for maximum efficiency</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-8h4v-4h-4zm0 8h4v-4h-4z"/></svg>
-                    </div>
-                    <h3>Format Conversion</h3>
-                    <p>Convert between JPG, PNG, WEBP, and modern formats seamlessly</p>
-                </div>
+    <section class="tool-section" id="image-tools">
+        <h2 class="section-title">Image Tools</h2>
+        <div class="tool-grid">
+            <div class="tool-card">
+                <i class="fas fa-compress tool-icon"></i>
+                <div class="tool-title">Image Compressor</div>
+                <div class="tool-description">Reduce image size without losing quality</div>
+                <a href="/image-compressor" class="cta-btn">Use Tool</a>
             </div>
-        </section>
-
-        <!-- Tools Section -->
-        <section class="tools">
-            <h2 class="section-title">All Tools</h2>
-            <div class="tools-grid">
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-8h4v-4h-4zm0 8h4v-4h-4z"/></svg>
-                    </div>
-                    <h3>Image Compressor</h3>
-                    <p>Reduce image size while maintaining quality</p>
-                    <a href="img-compress.html" class="tool-link">Try Now</a>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-8h4v-4h-4zm0 8h4v-4h-4z"/></svg>
-                    </div>
-                    <h3>Image Resizer</h3>
-                    <p>Resize images to any dimension quickly</p>
-                    <a href="resizer.html" class="tool-link">Try Now</a>
-                </div>
-                <div class="tool-card">
-                    <div class="tool-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-8h4v-4h-4zm0 8h4v-4h-4z"/></svg>
-                    </div>
-                    <h3>Format Converter</h3>
-                    <p>Convert between image formats instantly</p>
-                    <a href="converter.html" class="tool-link">Try Now</a>
-                </div>
+            <div class="tool-card">
+                <i class="fas fa-crop tool-icon"></i>
+                <div class="tool-title">Image Resizer</div>
+                <div class="tool-description">Resize images to any dimension</div>
+                <a href="/image-resizer" class="cta-btn">Use Tool</a>
             </div>
-        </section>
-    </div>
-
-    <footer>
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <h3>Company</h3>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Support</h3>
-                <ul>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Terms</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h3>Stay Updated</h3>
-                <p>Subscribe for new tool updates and tips</p>
-                <div class="subscribe">
-                    <input type="email" placeholder="Your email">
-                    <button>Subscribe</button>
-                </div>
+            <div class="tool-card">
+                <i class="fas fa-palette tool-icon"></i>
+                <div class="tool-title">Color Editor</div>
+                <div class="tool-description">Adjust brightness, contrast, and saturation</div>
+                <a href="/color-editor" class="cta-btn">Use Tool</a>
             </div>
         </div>
+    </section>
+
+    <div class="ad-slot">
+        <!-- Google AdSense Responsive Ad Code -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+             data-ad-slot="XXXXXXX"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+    </div>
+
+    <section class="tool-section" id="pdf-tools">
+        <h2 class="section-title">PDF Tools</h2>
+        <div class="tool-grid">
+            <div class="tool-card">
+                <i class="fas fa-file-pdf tool-icon"></i>
+                <div class="tool-title">PDF Compressor</div>
+                <div class="tool-description">Reduce PDF file size for easier sharing</div>
+                <a href="/pdf-compressor" class="cta-btn">Use Tool</a>
+            </div>
+            <div class="tool-card">
+                <i class="fas fa-unlock tool-icon"></i>
+                <div class="tool-title">PDF Unlocker</div>
+                <div class="tool-description">Remove password protection from PDFs</div>
+                <a href="/pdf-unlocker" class="cta-btn">Use Tool</a>
+            </div>
+            <div class="tool-card">
+                <i class="fas fa-file-word tool-icon"></i>
+                <div class="tool-title">PDF to Word</div>
+                <div class="tool-description">Convert PDF documents to editable Word files</div>
+                <a href="/pdf-to-word" class="cta-btn">Use Tool</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Toolbox. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
     </footer>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+         crossorigin="anonymous"></script>
+    <script>
+        // Initialize AdSense ads
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </body>
 </html>
